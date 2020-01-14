@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  config.vm.box = "bento/ubuntu-18.04"
  config.vm.box_url = "https://vagrantcloud.com/bento/ubuntu-18.04"
 
- config.vm.network "private_network", ip: "33.33.33.20"
+ config.vm.network "private_network", ip: "192.168.20.100"
 
  config.ssh.forward_agent = true
 

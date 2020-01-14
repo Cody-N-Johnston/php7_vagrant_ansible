@@ -1,0 +1,7 @@
+---
+- include: common.yml
+
+- hosts: default
+  become: yes
+  roles:
+    - { role: php, php_version: '7.4' }

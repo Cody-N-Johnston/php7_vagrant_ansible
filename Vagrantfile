@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
  config.ssh.forward_agent = true
 
+# Detect if host is using Windows, if not use nfs share.
  if Vagrant::Util::Platform.windows?
  config.vm.synced_folder "./", "/var/www", type: "smb"
  else

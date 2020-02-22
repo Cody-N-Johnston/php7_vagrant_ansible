@@ -8,8 +8,6 @@ php_packages:
   - "php{{ php_version}}-common"
   - "php{{ php_version }}-mysql"
   - "php{{ php_version }}-pgsql"
-  - "php-pear"
-  - "php{{ php_version }}-mcrypt"
   - "php{{ php_version }}-curl"
   - "php{{ php_version }}-gd"
   - "php{{ php_version }}-xsl"

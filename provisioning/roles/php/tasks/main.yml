@@ -1,31 +1,10 @@
 ---
-# tasks file for php
-- name: Add OS specific variables
+- name: Include OS variables
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Add repository for PHP versions (Ubuntu).
-  apt_repository: repo='ppa:ondrej/php/ubuntu {{ ansible_distribution_release }} main'
-  state: present
-  update_cache: yes
-  when: ansible_distribution == "Ubuntu"
-
-- name: Update apt cache
-  apt:
-    update_cache: yes
-
-- name: Install php packages (apt)
-  apt:
-    name: "{{ item }}"
-    with_items: "{{ php_packages }}"
-    state: latest
-    update_cache: yes
-
-- name: Install php-fpm packages
-  apt:
-    name: "{{ item }}"
-    with_items: "{{ php_fpm_packages }}"
-    state: latest
-    update_cache: yes
+# tasks file for php
+- name: Add tasks for OS
+  include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Make sure php-fpm is started
   systemd:

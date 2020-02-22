@@ -1,2 +1,21 @@
 ---
 # vars file for common
+common_packages:
+  - gcc
+  - curl
+  - make
+  - screen
+  - git-core
+  - vim
+  - ack-grep
+  - htop
+  - build-essential
+  - wget
+  - software-properties-common
+  - unzip
+  - tmux
+  - ntp
+  - python-setuptools
+  - python-dev
+  - python-pip
+  - python3-pip

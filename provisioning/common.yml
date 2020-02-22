@@ -1,8 +1,0 @@
-# Allows apt to download apt keys using https
-- name: Allow apt to use https
-  apt:
-    name:
-      - apt-transport-https
-      - ca-certificates
-    state: present
-  when: ansible_os_family == "Debian"

@@ -4,3 +4,4 @@
   roles:
     - { role: common}
     - { role: php, php_version: '7.4' }
+    - { role: nginx}

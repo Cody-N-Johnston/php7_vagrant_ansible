@@ -31,11 +31,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  end
 
  config.vm.provision "ansible_local" do |ansible|
- ansible.playbook = "provisioning/vagrant.yml"
-
- # output as much as you can, or comment this out for silence
- ansible.verbose = "vvvv"
- ansible.become = true
+    ansible.playbook = "provisioning/vagrant.yml"
+    ansible.extra_vars = { ansible_python_interpreter:"/usr/bin/python3" }
+    # output as much as you can, or comment this out for silence
+    ansible.verbose = "v"
+    ansible.become = true
  end
 
- end
+end

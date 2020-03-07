@@ -14,7 +14,7 @@
 - name: Update cache after adding PHP repos.
   apt:
     update_cache: yes
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: Install php packages (apt)
   apt:

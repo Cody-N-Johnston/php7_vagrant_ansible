@@ -1,0 +1,22 @@
+---
+# tasks file for nginx
+- name: Add official Nginx repo signing key
+  apt_key:
+    url: https://nginx.org/keys/nginx_signing.key
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add nginx repository
+  apt_repository:
+    repo: "{{ item }}" 
+    state: present
+  with_items:
+    - "{{ nginx_repos }}"
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: true
+  notify: start nginx

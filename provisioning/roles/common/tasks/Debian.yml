@@ -1,0 +1,8 @@
+---
+- name: Allow apt to download packages over https.
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+    state: present
+  when: ansible_os_family == "Debian"

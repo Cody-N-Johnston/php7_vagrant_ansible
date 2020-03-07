@@ -1,0 +1,34 @@
+---
+- name: Add Ondrej Sury's apt key (Debian).
+  apt_key:
+    url: https://packages.sury.org/php/apt.gpg
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Add repository for PHP versions (Ubuntu).
+  apt_repository:
+    repo: "ppa:ondrej/php/ubuntu {{ ansible_distribution_release }} main"
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Update cache after adding PHP repos.
+  apt:
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Install php packages (apt)
+  apt:
+    name: "{{ php_packages }}"
+    state: latest
+    update_cache: yes
+
+- name: Update cache after adding PHP packages.
+  apt:
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install php-fpm packages
+  apt:
+    name: "{{ php_fpm_packages }}"
+    state: latest
+    update_cache: yes

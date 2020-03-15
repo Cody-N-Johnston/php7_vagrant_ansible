@@ -1,11 +1,9 @@
 ---
 # vars file for php
 php_packages:
-  - "php{{ php_version }}"
   - "php{{ php_version }}-apcu"
   - "php{{ php_version}}-dev"
   - "php{{ php_version}}-cli"
-  - "php{{ php_version}}-common"
   - "php{{ php_version }}-mysql"
   - "php{{ php_version }}-pgsql"
   - "php{{ php_version }}-curl"

@@ -1,2 +1,5 @@
----
-# vars file for mysql
+mysql_packages:
+  - python-mysqldb
+  - python3-mysqldb
+
+install_mysql_default_packages: True 

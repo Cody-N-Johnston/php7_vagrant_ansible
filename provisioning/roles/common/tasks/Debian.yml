@@ -6,3 +6,11 @@
       - ca-certificates
     state: present
   when: ansible_os_family == "Debian"
+
+- name: Install software-properties-common
+  apt:
+    name: 
+    - software-properties-common
+    - dirmngr
+    state: present
+  when: ansible_os_family == "Debian"

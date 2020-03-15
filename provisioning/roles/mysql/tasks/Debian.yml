@@ -1,0 +1,25 @@
+---
+- name: Add MySQL repo gpg key
+  apt_key:
+    id: 8C718D3B5072E1F5
+    keyserver: pgp.mit.edu
+  when: not install_mysql_default_packages and ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Install mysql repo
+  apt:
+    deb: https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb 
+    update_cache: yes
+  when: not install_mysql_default_packages
+
+- name: Install mysql
+  apt:
+    name:
+      - mysql-common
+      - mysql-server 
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" 
+
+- name: Install the packages
+  apt: name="{{ item }}" state=present update_cache=yes
+  with_items: "{{ mysql_packages }}"
+  when: ansible_os_family == "Debian"

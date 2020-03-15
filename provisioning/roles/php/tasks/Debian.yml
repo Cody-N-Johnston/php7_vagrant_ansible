@@ -9,12 +9,8 @@
   apt_repository:
     repo: "ppa:ondrej/php/ubuntu {{ ansible_distribution_release }} main"
     state: present
-  when: ansible_distribution == "Ubuntu"
-
-- name: Update cache after adding PHP repos.
-  apt:
     update_cache: yes
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  when: ansible_distribution == "Ubuntu"
 
 - name: Install php packages (apt)
   apt:

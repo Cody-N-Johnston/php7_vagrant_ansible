@@ -1,7 +1,6 @@
 ---
 # vars file for php
 php_packages:
-  - "php{{ php_version }}"
   - "php{{ php_version }}-apcu"
   - "php{{ php_version}}-dev"
   - "php{{ php_version}}-cli"

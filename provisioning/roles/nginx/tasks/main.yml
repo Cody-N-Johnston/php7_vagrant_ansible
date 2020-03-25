@@ -19,4 +19,6 @@
     name: nginx
     state: present
     update_cache: true
-  notify: start nginx
+  notify: 
+    - enable nginx
+    - start nginx

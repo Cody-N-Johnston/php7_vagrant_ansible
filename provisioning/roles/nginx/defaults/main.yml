@@ -1,5 +1,9 @@
 ---
 # defaults file for nginx
+use_nginx: true
+use_nginx_apt_repo: false
+use_fastcgi: true
+load_custom_config: true
 branch_version: mainline
 nginx_repos:
     - "deb [arch=amd64] https://nginx.org/packages/{{ branch_version }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"

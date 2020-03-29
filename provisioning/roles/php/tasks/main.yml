@@ -8,6 +8,6 @@
 
 - name: Make sure php-fpm is started
   systemd:
-    name: "php{{ php_version }}-fpm"
+    name: "php-fpm"
     enabled: yes
     state: reloaded

@@ -4,7 +4,9 @@
   apt_key:
     url: https://nginx.org/keys/nginx_signing.key
     state: present
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" and use_nginx and not use_nginx_apt_repo 
+  when:
+    - ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+    - use_nginx and not use_nginx_apt_repo
 
 - name: Add nginx repository
   apt_repository:
@@ -12,7 +14,9 @@
     state: present
   with_items:
     - "{{ nginx_repos }}"
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" and use_nginx and not use_nginx_apt_repo
+  when:
+    - ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+    - use_nginx and not use_nginx_apt_repo
 
 - name: Install nginx
   apt:

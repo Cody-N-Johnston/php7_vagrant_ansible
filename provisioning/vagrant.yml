@@ -6,4 +6,3 @@
     - { role: php, php_version: '7.4' }
     - { role: mariadb }
     - { role: nginx}
-    -

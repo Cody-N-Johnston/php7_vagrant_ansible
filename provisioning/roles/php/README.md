@@ -1,38 +1,76 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs PHP on Ubuntu servers
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+If you are using an older version of Ubuntu/Debian alongside a deprecated version of PHP you will need to use a repo or PPA with a maintained PHP version.
+This role has currently only been tested on Ubuntu 18.04, however it attempts to pull your distribution version specific packages from the default PPA repositories.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Available variables (`vars/main.yml`) are listed here alongside default values (`defaults/main.yml`)
+
+####vars
+`php_packages`
+ A list of packages to install. Currently this is not OS specific. You may want to install additional packages depending on your application. 
+ 
+
+`php_fpm_packages`
+A list of php-fpm packages that need to be installed.
+
+
+`install_php_fpm`
+A true/false (`true by default`) value indicating whether or not you want to install php-fpm. More details about this package can be found [here](https://www.php.net/manual/en/install.fpm.php)   
+When this flag is set to true this will install one version of php-fpm it also currently tries to mitigate needing to specify the version number  
+in order to manage processes or the service itself. As such there are configuration files that are used/modified in order to achieve this.
+
+####defaults
+`PROJECT_ROOT`  
+Root of your PHP project, will be used in config files.
+
+`php_version`  
+PHP version on supported operating systems this can support major version 5.6 - 7.4
+
+`php_extra_packages`  
+Any extra packages you need installed, is empty by default.
+
+####Debian (`vars/Debian.yml`)
+`php_fpm_conf_path`  
+Path to php-fpm settings
+
+`php_fpm_pool_conf_path`  
+Path to fpm pool configuration.
+
+`php_fpm_pool_file`  
+Name of the file to use for configuration.
+
+`php_fpm_service_file`  
+Path to default init/upstart script use for configuration.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Currently there are no dependencies on other roles, however some options such as those regarding php-fpm will need to be utilized  
+in order to obtain performance benefits or use the NGINX role I have created.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+   - hosts: default
+     become: yes
+     roles:
+       - { role: php, php_version: '7.4', install_php_fpm: true }
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Cody johnston, cody.n.johnston@gmail.com

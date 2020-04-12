@@ -28,6 +28,7 @@
     name: "{{ php_fpm_packages }}"
     state: latest
     update_cache: yes
+  when: install_php_fpm
 
 - name: Load custom php-fpm service configuration
   copy:
@@ -39,6 +40,7 @@
     mode: '0755'
   notify:
     - start php-fpm
+  when: install_php_fpm
   
 - name: Make php-fpm service file work across all versions
   lineinfile:
@@ -49,6 +51,7 @@
     owner: root
     group: root
     mode: '0755'
+  when: install_php_fpm
 
 - name: Make php-fpm.conf work across all versions
   lineinfile:
@@ -59,6 +62,7 @@
     owner: root
     group: root
     mode: '0644'
+  when: install_php_fpm
 
 - name: Install php-fpm pool configuration
   copy:
@@ -70,4 +74,5 @@
     mode: '0644'
   notify: 
   - reload php-fpm
+  when: install_php_fpm
     

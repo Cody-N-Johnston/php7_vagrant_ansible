@@ -4,3 +4,64 @@
 
 - name: Add tasks for OS
   include_tasks: "{{ ansible_os_family }}.yml"
+
+- name: Add nginx.conf
+  copy:
+    src: nginx.conf
+    dest: "{{ nginx_conf_directory }}/"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart nginx
+  when: use_nginx
+
+- name: Add fastcgi.conf
+  copy:
+    src: fastcgi.conf
+    dest: "{{ nginx_conf_directory }}/"
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart nginx
+  when: use_nginx and use_fastcgi
+
+- name: Add sites-available directory.
+  file:
+    path: "{{ nginx_conf_directory }}/sites-available"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  when: use_nginx
+
+- name: Add sites-enabled directory.
+  file:
+    path: "{{ nginx_conf_directory }}/sites-enabled"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  when: use_nginx
+
+- name: Place website config
+  copy:
+    src: "{{ nginx_site_config }}"
+    dest: "{{ nginx_conf_directory }}/sites-available/"
+    owner: root
+    group: root
+    mode: '0644'
+  when: use_nginx and load_custom_config
+
+- name: Enable website config
+  file:
+    src: "{{ nginx_conf_directory }}/sites-available/{{ nginx_site_config }}"
+    dest: "{{ nginx_conf_directory }}/sites-enabled/{{ nginx_site_config }}"
+    owner: root
+    group: root
+    state: link
+  notify:
+    - reload nginx
+    - restart nginx
+  when: use_nginx

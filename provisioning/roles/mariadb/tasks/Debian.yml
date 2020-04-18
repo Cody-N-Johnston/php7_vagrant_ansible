@@ -1,0 +1,19 @@
+- name: Add MariaDB repo gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com 
+    id: F1656F24C74CD1D8
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+
+- name: Add MariaDB repo
+  apt_repository:
+      repo: deb [arch=amd64] http://sfo1.mirrors.digitalocean.com/mariadb/repo/{{ mariadb_version }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main 
+      state: present
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" 
+    
+- name: Install MariaDB 
+  apt:
+    name: 
+    - mariadb-common
+    - mariadb-server
+    update_cache: yes
+  notify: restart mariadb

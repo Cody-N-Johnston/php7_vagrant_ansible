@@ -7,7 +7,7 @@
   include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Make sure php-fpm is started
-  systemd:
+  service:
     name: "php-fpm"
     enabled: yes
-    state: reloaded
+    state: started

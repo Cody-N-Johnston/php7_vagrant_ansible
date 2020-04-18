@@ -6,6 +6,8 @@ however with a little bit of work can be used with your preferred virtualization
 The playbooks could also be used when deploying software on servers with an additional ansible inventory file.
 However, production systems will need additional configuration depending on your site's specific configuration or security concerns.
 
+On Windows you may run into some issues building the environment with the Virtualbox provider. More details below on how to mitigate them.
+
 
 ## Software Requirements
 - [VirtualBox](https://www.virtualbox.org/)

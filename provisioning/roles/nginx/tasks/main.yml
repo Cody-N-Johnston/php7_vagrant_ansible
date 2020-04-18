@@ -64,4 +64,4 @@
   notify:
     - reload nginx
     - restart nginx
-  when: use_nginx
+  when: use_nginx and load_custom_config

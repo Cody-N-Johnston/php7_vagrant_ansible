@@ -1,38 +1,62 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Installs NGINX on Ubuntu/Debian servers
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role has currently only been tested on Ubuntu 18.04, however it attempts to pull your distribution version specific packages from the default PPA repositories.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Available variables (`vars/main.yml`) are listed here alongside default values (`defaults/main.yml`)
+
+####vars
+`nginx_conf_directory`
+The path to nginx's config directory
+
+`nginx_site_config`  
+Nginx site config file name.
+
+####defaults
+`use_nginx`  
+True/False value indicating whether or not to use additional configuration when using Nginx official repo.
+
+`use_nginx_apt_repo`  
+True/False value indicating whether or not to use apt's default repo for NGINX.
+
+`load_custom_config`  
+True/False value indicating whether or not custom website configuration should be used or not.
+
+`use_fastcgi`
+True/False value indicating whether or not default fastcgi.conf should be installed.
+
+`branch_version`  
+Can be either stable or mainline. This is which branch to use when installing. Stable is recommended for production use.
+
+####Debian (`vars/Debian.yml`)
+`nginx_repos`  
+This is a list of repos that must be added when attempting to use NGINX's offical repository.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+   - hosts: default
+     become: yes
+     roles:
+       - { role: php, php_version: '7.4', install_php_fpm: true }
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Cody johnston, cody.n.johnston@gmail.com

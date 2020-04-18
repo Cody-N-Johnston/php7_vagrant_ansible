@@ -17,7 +17,7 @@
       - mysql-common
       - mysql-server 
     update_cache: yes
-  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" 
+  when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian" and not install_mysql_default_packages 
 
 - name: Install the packages
   apt: name="{{ item }}" state=present update_cache=yes

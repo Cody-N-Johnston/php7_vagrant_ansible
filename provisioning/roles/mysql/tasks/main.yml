@@ -4,4 +4,6 @@
   include_tasks: "{{ ansible_os_family }}.yml"
 
 - name: Ensure mysql service is up
-  action: systemd name=mysql state=started
+  service:
+    name: mysql
+    state: started

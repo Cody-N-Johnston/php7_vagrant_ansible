@@ -6,7 +6,7 @@ Installs NGINX on Ubuntu/Debian servers
 Requirements
 ------------
 
-This role has currently only been tested on Ubuntu 18.04, however it attempts to pull your distribution version specific packages from the default PPA repositories.
+This role has currently only been tested on Ubuntu 18.04, however it attempts to pull your distribution version specific packages from the default repositories.
 
 Role Variables
 --------------

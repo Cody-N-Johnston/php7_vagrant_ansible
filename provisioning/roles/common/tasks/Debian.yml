@@ -5,7 +5,6 @@
       - apt-transport-https
       - ca-certificates
     state: present
-  when: ansible_os_family == "Debian"
 
 - name: Install software-properties-common
   apt:
@@ -13,4 +12,8 @@
     - software-properties-common
     - dirmngr
     state: present
-  when: ansible_os_family == "Debian"
+
+- name: Install common packages
+  apt:
+    name: "{{ common_packages }}"
+    state: present

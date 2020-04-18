@@ -4,14 +4,13 @@ common_packages:
   - gcc
   - curl
   - make
-  - screen
+  - tmux 
   - git-core
   - vim
   - ack-grep
   - htop
   - build-essential
   - wget
-  - software-properties-common
   - unzip
   - tmux
   - ntp

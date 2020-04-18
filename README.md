@@ -16,7 +16,7 @@ However, production systems will need additional configuration depending on your
 
 ## Default Vagrant options
 - The OS image used by default is Ubuntu 18.04 LTS.
-- IP Address is 192.168.20.100
+- IP Address of the remote host is 192.168.20.100
 - Memory 1024MB 
 - Ansible local
 
@@ -29,7 +29,7 @@ However, production systems will need additional configuration depending on your
 - Ensure you are in the project's root directory and run `vagrant up`. This will begin downloading the default image that is used and provisioning the environment through Ansible.
 
 ## Synced Folders
-The Vagrantfile is set up to switch synced folders depending on OS. So if a windows host is running folders will be shared using SMB, otherwise it uses NFS. If you are on Windows and run `vagrant up`
+The Vagrantfile is set up to switch synced folders depending on OS. So if a windows host is running folders will be shared using SMB, otherwise it uses NFS. If you are on Windows and run `vagrant up`. Following the successful of the environment using the included vagrant.yml playbook you can navigate to http://192.168.20.100 to see the phpinfo results.
 
 ## Example playbook to build the environment.
 ```

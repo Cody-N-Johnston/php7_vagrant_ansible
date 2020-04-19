@@ -29,6 +29,8 @@ On Windows you may run into some issues building the environment with the Virtua
 ## Building the environment
 - Verify vagrant is installed by running `vagrant --version`
 - Ensure you are in the project's root directory and run `vagrant up`. This will begin downloading the default image that is used and provisioning the environment through Ansible.
+- Run `vagrant ssh` to enter into a terminal on the remote host.
+- Navigate to http://192.168.20.100 to view the phpinfo page that is installed by default.
 
 ## Synced Folders
 The Vagrantfile is set up to switch synced folders depending on OS. So if a windows host is running folders will be shared using SMB, otherwise it uses NFS. If you are on Windows and run `vagrant up`. Following the successful of the environment using the included vagrant.yml playbook you can navigate to http://192.168.20.100 to see the phpinfo results.

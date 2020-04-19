@@ -13,7 +13,7 @@ On Windows you may run into some issues building the environment with the Virtua
 - [VirtualBox](https://www.virtualbox.org/)
     - Vagrant supports versions 4.0.x, 4.1.x, 4.2.x, 4.3.x, 5.0.x, 5.1.x, 5.2.x, 6.0.x, and 6.1.x
 - [Vagrant](https://vagrantup.com/)
-- [Ansible](https://ansible.com/)
+- [Ansible (optional install)](https://ansible.com/)
     - The provided Vagrantfile uses the ansible_local option which attempts to install and use ansible on the remote host instead of requiring installation of ansible on the local system. This can be changed by changing `config.vm.provision "ansible_local" do |ansible|` to `config.vm.provision "ansible" do |ansible|` in the Vagrantfile. You will need to make sure ansible has been added to your path though.
 
 ## Default Vagrant options
